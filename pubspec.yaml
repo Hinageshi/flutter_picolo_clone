@@ -39,6 +39,19 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  fonts:
+      - family: Comix-Loud
+        fonts:
+            - asset: assets/fonts/Comix-Loud.ttf
+  assets:
+    - assets/images/shot.png # icon made by Freepik from flaticon.com
+    - assets/images/wine-bottle.png # icon made by Freepik from flaticon.com
+    - assets/images/vodka-shot.png # icon made by Freepik from flaticon.com
+    - assets/images/vodka.png # icon made by Freepik from flaticon.com
+    - assets/images/cheers.png # icon made by dDara from flaticon.com
+    - assets/images/pint.png # icon made by Smashicons from flaticon.com
+    - assets/images/beer-bottle.png # icon made by Freepik from flaticon.com
+    - assets/images/race.png
 
   # To add assets to your application, add an assets section, like this:
   # assets:
