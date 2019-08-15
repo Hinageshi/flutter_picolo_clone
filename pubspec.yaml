@@ -24,6 +24,7 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
   font_awesome_flutter: ^8.5.0
+  provider: 3.0.0+1
 
 dev_dependencies:
   flutter_test:
@@ -43,7 +44,7 @@ flutter:
   fonts:
       - family: Comix-Loud
         fonts:
-            - asset: assets/fonts/Comix-Loud.ttf
+            - asset: assets/fonts/Comix-Loud.ttf # font made by imagex from dafont.com
   assets:
     - assets/images/shot.png # icon made by Freepik from flaticon.com
     - assets/images/wine-bottle.png # icon made by Freepik from flaticon.com
@@ -52,8 +53,8 @@ flutter:
     - assets/images/cheers.png # icon made by dDara from flaticon.com
     - assets/images/pint.png # icon made by Smashicons from flaticon.com
     - assets/images/beer-bottle.png # icon made by Freepik from flaticon.com
-    - assets/images/race.png
-    - lib/data/quotes.json
+    - assets/images/race.png # icons made by Freepik from flaticon.com
+    - assets/data/quotes.json
 
   # To add assets to your application, add an assets section, like this:
   # assets:
