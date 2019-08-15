@@ -13,7 +13,7 @@ class JsonHandlerService {
 
   Future load(BuildContext context) async {
     await loadQuotes(context);
-    //await loadNames(context);
+    await loadNames(context);
     //await loadRules(context);
   }
 

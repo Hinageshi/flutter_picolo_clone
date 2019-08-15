@@ -3,6 +3,7 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_picolo_clone/services/json_handler_service.dart';
+import 'package:flutter_picolo_clone/view/players_selection.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_picolo_clone/model/quote.dart';
@@ -101,51 +102,6 @@ class _HomePageState extends State<HomePage> {
                     ],
                   ),
                 ),
-                /*FutureBuilder<Quote>(
-                      future: getRandomQuote(),
-                      builder: (BuildContext context,
-                          AsyncSnapshot<Quote> snapshot) {
-                        if (snapshot.hasData) {
-                          return Padding(
-                            padding: EdgeInsets.only(left: 50.0, right: 50.0),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.min,
-                              children: <Widget>[
-                                ConstrainedBox(
-                                  constraints: BoxConstraints(),
-                                  child: Text(snapshot.data.content,
-                                      style: TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.bold),
-                                      textAlign: TextAlign.center),
-                                ),
-                                Padding(
-                                  padding: EdgeInsets.only(top: 15.0),
-                                  child: Row(
-                                    children: <Widget>[
-                                      Expanded(child: Container()),
-                                      ConstrainedBox(
-                                        constraints: BoxConstraints(
-                                            maxWidth: MediaQuery.of(context)
-                                                    .size
-                                                    .width -
-                                                100.0),
-                                        child: Text("- ${snapshot.data.author}",
-                                            style: TextStyle(
-                                                color: Colors.white,
-                                                fontStyle: FontStyle.italic),
-                                            textAlign: TextAlign.right),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          );
-                        } else {
-                          return Center(child: CircularProgressIndicator());
-                        }
-                      }),*/
                 Padding(
                   padding: EdgeInsets.only(left: 50.0, right: 50.0),
                   child: Column(
@@ -212,7 +168,11 @@ class _HomePageState extends State<HomePage> {
                                   borderRadius:
                                       new BorderRadius.circular(20.0)),
                               color: Colors.white,
-                              onPressed: () {},
+                              onPressed: () {
+                                Navigator.of(context).push(MaterialPageRoute(
+                                  builder: (_) => PlayersSelectionPage(),
+                                ));
+                              },
                               child: Padding(
                                 padding:
                                     EdgeInsets.fromLTRB(20.0, 30.0, 20.0, 20.0),

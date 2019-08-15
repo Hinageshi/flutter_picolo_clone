@@ -55,6 +55,7 @@ flutter:
     - assets/images/beer-bottle.png # icon made by Freepik from flaticon.com
     - assets/images/race.png # icons made by Freepik from flaticon.com
     - assets/data/quotes.json
+    - assets/data/names.json
 
   # To add assets to your application, add an assets section, like this:
   # assets:
