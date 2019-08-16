@@ -1,7 +1,9 @@
 import 'dart:collection';
+import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_picolo_clone/model/display_element.dart';
 import 'package:flutter_picolo_clone/model/player.dart';
 import 'package:flutter_picolo_clone/model/rule.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -22,7 +24,7 @@ class GamePage extends StatefulWidget {
 }
 
 class _GamePageState extends State<GamePage> {
-  ListQueue<Rule> rulesToDisplay;
+  ListQueue<DisplayElement> elementsToDisplay;
 
   @override
   void initState() {
@@ -31,7 +33,39 @@ class _GamePageState extends State<GamePage> {
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
     ]);
-    rulesToDisplay = ListQueue<Rule>()..addAll(widget.rules);
+    elementsToDisplay = ListQueue();
+    widget.rules.forEach((Rule rule) {
+      if (rule.nbPlayers != 0) {
+        List<Player> playersRule = getRandomPlayers(rule.nbPlayers);
+        String ruleContent = rule.content;
+        for (int i = 0; i < rule.nbPlayers; i++) {
+          ruleContent = ruleContent.replaceAll(
+              "{{${i.toString()}}}", playersRule[i].name);
+        }
+        elementsToDisplay.addLast(new DisplayElement(
+            getPrimaryColor(rule), rule.typeAsString, ruleContent));
+      } else
+        elementsToDisplay.addLast(new DisplayElement(
+            getPrimaryColor(rule), rule.typeAsString, rule.content));
+    });
+  }
+
+  List<Player> getRandomPlayers(int nb) {
+    List<Player> playersList = [];
+    if (nb > 0 && nb <= widget.players.length) {
+      while (playersList.length != nb) {
+        var random = new Random();
+        int nb = random.nextInt(widget.players.length);
+        if (!playersList.contains(widget.players[nb]))
+          playersList.add(widget.players[nb]);
+      }
+    } else {
+      if (nb < 0) throw new Exception("Number can't be negative.");
+      if (nb > widget.players.length)
+        throw new Exception(
+            "Number can't be superior to number of players. Current number of players is ${widget.players.length}");
+    }
+    return playersList;
   }
 
   @override
@@ -68,10 +102,10 @@ class _GamePageState extends State<GamePage> {
         children: <Widget>[
           GestureDetector(
             onTap: () {
-              rulesToDisplay.length == 0
+              elementsToDisplay.length == 0
                   ? Navigator.of(context).pop()
                   : setState(() {
-                      rulesToDisplay.removeFirst();
+                      elementsToDisplay.removeFirst();
                     });
             },
             child: Container(
@@ -79,20 +113,21 @@ class _GamePageState extends State<GamePage> {
                     gradient: LinearGradient(
                         begin: Alignment.topCenter,
                         end: Alignment.bottomCenter,
-                        colors: rulesToDisplay.length > 0
+                        colors: elementsToDisplay.length > 0
                             ? [
-                                getPrimaryColor(rulesToDisplay.elementAt(0)),
-                                getPrimaryColor(
-                                    rulesToDisplay.elementAt(0))[300]
+                                elementsToDisplay.elementAt(0).backgroundColor,
+                                elementsToDisplay
+                                    .elementAt(0)
+                                    .backgroundColor[300]
                               ]
                             : [Colors.purple, Colors.purple[300]],
                         stops: [0.8, 1.0])),
                 child: Center(
-                    child: rulesToDisplay.length > 0
+                    child: elementsToDisplay.length > 0
                         ? Column(
                             mainAxisSize: MainAxisSize.min,
                             children: <Widget>[
-                              Text(rulesToDisplay.elementAt(0).typeAsString,
+                              Text(elementsToDisplay.elementAt(0).title,
                                   style: TextStyle(
                                       color: Colors.white,
                                       fontSize: 30.0,
@@ -104,7 +139,8 @@ class _GamePageState extends State<GamePage> {
                                     maxWidth:
                                         MediaQuery.of(context).size.width /
                                             1.2),
-                                child: Text(rulesToDisplay.elementAt(0).content,
+                                child: Text(
+                                    elementsToDisplay.elementAt(0).content,
                                     style: TextStyle(
                                         color: Colors.white, fontSize: 30.0),
                                     textAlign: TextAlign.center),
