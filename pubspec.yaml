@@ -56,6 +56,7 @@ flutter:
     - assets/images/race.png # icons made by Freepik from flaticon.com
     - assets/data/quotes.json
     - assets/data/names.json
+    - assets/data/rules.json
 
   # To add assets to your application, add an assets section, like this:
   # assets:

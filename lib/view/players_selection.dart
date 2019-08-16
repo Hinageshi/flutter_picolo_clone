@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_picolo_clone/model/player.dart';
+import 'package:flutter_picolo_clone/model/rule.dart';
 import 'package:flutter_picolo_clone/services/json_handler_service.dart';
 import 'package:flutter_picolo_clone/view/game_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -145,14 +146,17 @@ class _PlayersSelectionPageState extends State<PlayersSelectionPage> {
                           textAlign: TextAlign.center,
                         ),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         List<Player> players = [];
                         retrievePlayersNames().forEach((String name) {
                           players.add(Player(name));
                         });
                         if (players.length >= 2) {
+                          List<Rule> rules =
+                              await Provider.of<JsonHandlerService>(context)
+                                  .getRulesList(context, 10);
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (_) => GamePage(players)));
+                              builder: (_) => GamePage(players, rules)));
                         } else {
                           print("There is not enough players.");
                         }
