@@ -1,0 +1,44 @@
+{
+    "number_of_rules": 0,
+    "rules": [
+        {
+            "rule": "La personne ayant été célibataire le plus longtemps distribue 2 gorgées",
+            "type": "rule",
+            "number_of_players": 0
+        },
+        {
+            "rule": "Si tu fais des études d'informatique, bois 5 gorgées",
+            "type": "rule",
+            "number_of_players": 0
+        },
+        {
+            "rule": "Les filles, c'est vous qui servez tout le monde à partir de maintenant",
+            "end_rule": "Les filles ne font plus le service !",
+            "type": "bug",
+            "number_of_players": 0
+        },
+        {
+            "rule": "{{0}} est aveugle d'un oeil, garde un oeil fermé jusqu'à nouvel ordre. Tu prends 3 gorgées à chaque fois que tu le rouvres",
+            "end_rule": "{{0}} n'est plus borgne",
+            "type": "bug",
+            "number_of_players": 1
+        },
+        {
+            "rule": "Les gars, c'est vous qui servez tout le monde à partir de maintenant",
+            "end_rule": "Les garçons ne font plus le service !",
+            "type": "bug",
+            "number_of_players": 0
+        },
+        {
+            "rule": "{{0}}, dis le signe astrologique de {{1}} ou il/elle choisira combien de gorgées tu prends",
+            "type": "game",
+            "number_of_players": 2
+        },
+        {
+            "rule": "Sages comme des images : personne n'a le droit de jurer à partir de maintenant. 2 gorgées par gros mot si t'es un sale gosse",
+            "end_rule": "Vous pouvez maintenant jurer comme des charretiers",
+            "type": "virus",
+            "number_of_players": 0
+        }
+    ]
+}
