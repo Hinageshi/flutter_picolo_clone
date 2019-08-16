@@ -38,7 +38,7 @@ class JsonHandlerService {
   Quote getRandomQuote() {
     if (_quotesJsonData != null) {
       var random = new Random();
-      int nb = random.nextInt(_quotesJsonData["number_of_quotes"] - 1);
+      int nb = random.nextInt(_quotesJsonData["number_of_quotes"]);
       return new Quote(_quotesJsonData["quotes"][nb]["quote"],
           author: _quotesJsonData["quotes"][nb]["author"]);
     } else {
@@ -49,7 +49,7 @@ class JsonHandlerService {
   String getRandomName() {
     if (_namesJsonData != null) {
       var random = new Random();
-      int nb = random.nextInt(_namesJsonData["number_of_names"] - 1);
+      int nb = random.nextInt(_namesJsonData["number_of_names"]);
       return _namesJsonData["names"][nb];
     } else {
       throw new Exception("Names data is not yet loaded.");

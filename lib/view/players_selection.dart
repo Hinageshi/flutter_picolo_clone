@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_picolo_clone/model/player.dart';
+import 'package:flutter_picolo_clone/services/json_handler_service.dart';
+import 'package:flutter_picolo_clone/view/game_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-
-//TODO : add TextFieldControllers
-//TODO : add random name generation
-//TODO : correct fields removal
+import 'package:provider/provider.dart';
 
 class PlayersSelectionPage extends StatefulWidget {
   PlayersSelectionPage({Key key}) : super(key: key);
@@ -14,7 +14,9 @@ class PlayersSelectionPage extends StatefulWidget {
 }
 
 class _PlayersSelectionPageState extends State<PlayersSelectionPage> {
-  List<Widget> widgets;
+  Map<int, Widget> playersRows;
+  Map<int, TextEditingController> controllers;
+  int id;
 
   @override
   void initState() {
@@ -23,10 +25,16 @@ class _PlayersSelectionPageState extends State<PlayersSelectionPage> {
       DeviceOrientation.portraitDown,
       DeviceOrientation.portraitUp,
     ]);
-    widgets = [
-      generatePlayerLine(false),
-      generatePlayerLine(false),
-    ];
+    id = 0;
+    controllers = {
+      1: TextEditingController(),
+      2: TextEditingController(),
+    };
+    playersRows = {
+      1: generatePlayerLine(1, false, controllers[1]),
+      2: generatePlayerLine(2, false, controllers[2]),
+    };
+    id += 2;
   }
 
   @override
@@ -43,14 +51,10 @@ class _PlayersSelectionPageState extends State<PlayersSelectionPage> {
           backgroundColor: Colors.transparent,
           body: Stack(
             children: <Widget>[
-              Align(
-                alignment: Alignment.topLeft,
-                child: BackButton(color: Colors.white),
-              ),
-              Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
+              ListView(
+                //physics: const NeverScrollableScrollPhysics(),
                 children: <Widget>[
+                  SizedBox(height: 30.0),
                   Text(
                     "C'EST L'HEURE",
                     style: TextStyle(
@@ -85,21 +89,24 @@ class _PlayersSelectionPageState extends State<PlayersSelectionPage> {
                   Text(
                     "Choisis qui va morfler ce soir :",
                     style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 20.0,
-                        fontWeight: FontWeight.bold),
+                      color: Colors.white,
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
                   SizedBox(height: 20.0),
                   ConstrainedBox(
                     constraints: BoxConstraints(
-                        maxHeight: MediaQuery.of(context).size.height / 2.5),
+                        maxHeight: MediaQuery.of(context).size.height / 2.2),
                     child: ListView.builder(
                       //shrinkWrap: true,
-                      itemCount: widgets.length,
+                      itemCount: playersRows.length,
                       itemBuilder: (BuildContext context, int index) {
+                        List<Widget> values = playersRows.values.toList();
                         return Padding(
                           padding: EdgeInsets.all(5.0),
-                          child: widgets[index],
+                          child: values[index],
                         );
                       },
                     ),
@@ -109,36 +116,74 @@ class _PlayersSelectionPageState extends State<PlayersSelectionPage> {
                         color: Colors.white, size: 30.0),
                     onPressed: () {
                       setState(() {
-                        widgets.add(generatePlayerLine(true));
+                        id++;
+                        controllers.putIfAbsent(
+                            id, () => TextEditingController());
+                        playersRows.putIfAbsent(
+                            id,
+                            () =>
+                                generatePlayerLine(id, true, controllers[id]));
                       });
                     },
                   ),
                   SizedBox(height: 20.0),
-                  RaisedButton(
-                    shape: RoundedRectangleBorder(
-                        borderRadius: new BorderRadius.circular(20.0)),
-                    color: Colors.white,
-                    onPressed: () {},
-                    child: Padding(
-                      padding: EdgeInsets.fromLTRB(5.0, 30.0, 5.0, 20.0),
-                      child: Text(
-                        "ENVOIE LA SAUCE",
-                        style: TextStyle(
-                            fontFamily: 'Comix-Loud',
-                            color: Colors.blue[300],
-                            fontSize: 15.0),
-                        textAlign: TextAlign.center,
+                  Padding(
+                    padding:
+                        EdgeInsets.only(left: 30.0, right: 30.0, bottom: 20.0),
+                    child: RaisedButton(
+                      shape: RoundedRectangleBorder(
+                          borderRadius: new BorderRadius.circular(20.0)),
+                      color: Colors.white,
+                      child: Padding(
+                        padding: EdgeInsets.fromLTRB(5.0, 30.0, 5.0, 20.0),
+                        child: Text(
+                          "ENVOIE LA SAUCE",
+                          style: TextStyle(
+                              fontFamily: 'Comix-Loud',
+                              color: Colors.blue[300],
+                              fontSize: 15.0),
+                          textAlign: TextAlign.center,
+                        ),
                       ),
+                      onPressed: () {
+                        List<Player> players = [];
+                        retrievePlayersNames().forEach((String name) {
+                          players.add(Player(name));
+                        });
+                        if (players.length >= 2) {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (_) => GamePage(players)));
+                        } else {
+                          print("There is not enough players.");
+                        }
+                      },
                     ),
                   ),
                 ],
-              )
+              ),
+              Padding(
+                padding: EdgeInsets.only(top: 10.0, left: 10.0),
+                child: IconButton(
+                  icon: Icon(FontAwesomeIcons.arrowLeft),
+                  color: Colors.white,
+                  onPressed: () => Navigator.of(context).pop(),
+                ),
+              ),
             ],
           )),
     );
   }
 
-  Widget generatePlayerLine(bool isRemovable) {
+  List<String> retrievePlayersNames() {
+    List<String> players = [];
+    controllers.values.toList().forEach((TextEditingController tec) {
+      if (tec.text.trim().isNotEmpty) players.add(tec.text.trim());
+    });
+    return players;
+  }
+
+  Widget generatePlayerLine(
+      int key, bool isRemovable, TextEditingController tec) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
@@ -147,7 +192,10 @@ class _PlayersSelectionPageState extends State<PlayersSelectionPage> {
           child: IconButton(
             icon: Icon(FontAwesomeIcons.dice),
             color: Colors.white,
-            onPressed: () {},
+            onPressed: () {
+              controllers[key].text =
+                  Provider.of<JsonHandlerService>(context).getRandomName();
+            },
           ),
         ),
         Container(
@@ -157,8 +205,10 @@ class _PlayersSelectionPageState extends State<PlayersSelectionPage> {
                 child: Padding(
                   padding: EdgeInsets.fromLTRB(10.0, 0.0, 10.0, 0.0),
                   child: TextField(
+                    controller: tec,
                     style: TextStyle(fontSize: 20.0),
                     decoration: new InputDecoration(
+                      //hintText: "Soiffard $key",
                       enabledBorder: UnderlineInputBorder(
                         borderSide: BorderSide(color: Colors.transparent),
                       ),
@@ -174,7 +224,8 @@ class _PlayersSelectionPageState extends State<PlayersSelectionPage> {
             onPressed: isRemovable
                 ? () {
                     setState(() {
-                      widgets.removeLast();
+                      playersRows.remove(key);
+                      controllers.remove(key);
                     });
                   }
                 : () {},
