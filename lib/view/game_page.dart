@@ -8,8 +8,6 @@ import 'package:flutter_picolo_clone/model/player.dart';
 import 'package:flutter_picolo_clone/model/rule.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
-//TODO : manage to end viruses and bugs
-
 class GamePage extends StatefulWidget {
   final List<Player> players;
   final List<Rule> rules;
@@ -33,21 +31,51 @@ class _GamePageState extends State<GamePage> {
       DeviceOrientation.landscapeLeft,
       DeviceOrientation.landscapeRight,
     ]);
-    elementsToDisplay = ListQueue();
-    widget.rules.forEach((Rule rule) {
-      if (rule.nbPlayers != 0) {
-        List<Player> playersRule = getRandomPlayers(rule.nbPlayers);
-        String ruleContent = rule.content;
-        for (int i = 0; i < rule.nbPlayers; i++) {
-          ruleContent = ruleContent.replaceAll(
-              "{{${i.toString()}}}", playersRule[i].name);
+    elementsToDisplay = ListQueue.from(treatRules());
+  }
+
+  int randomIntBetween(int min, int max, Random random) =>
+      min + random.nextInt(max - min);
+
+  List<DisplayElement> treatRules() {
+    List<DisplayElement> displayElements = [];
+    List<Rule> rulesToAdd = [];
+    List<int> indexes = [];
+    Random random = Random();
+    for (int i = 0; i < widget.rules.length; i++) {
+      if (widget.rules[i].nbPlayers != 0) {
+        List<Player> randomPlayers =
+            getRandomPlayers(widget.rules[i].nbPlayers);
+        for (int j = 0; j < widget.rules[i].nbPlayers; j++) {
+          widget.rules[i].content = widget.rules[i].content
+              .replaceAll("{{${j.toString()}}}", randomPlayers[j].name);
+          if (widget.rules[i].endContent != null)
+            widget.rules[i].endContent = widget.rules[i].endContent
+                .replaceAll("{{${j.toString()}}}", randomPlayers[j].name);
         }
-        elementsToDisplay.addLast(new DisplayElement(
-            getPrimaryColor(rule), rule.typeAsString, ruleContent));
-      } else
-        elementsToDisplay.addLast(new DisplayElement(
-            getPrimaryColor(rule), rule.typeAsString, rule.content));
-    });
+      }
+      if (widget.rules[i].endContent.isNotEmpty) {
+        rulesToAdd.add(widget.rules[i]);
+        indexes.add(i);
+      }
+      displayElements.add(new DisplayElement(getPrimaryColor(widget.rules[i]),
+          widget.rules[i].typeAsString, widget.rules[i].content));
+    }
+    for (int i = 0; i < rulesToAdd.length; i++) {
+      //TODO : find a good range for viruses and bugs
+      int newIndex =
+          indexes[i] + randomIntBetween(indexes[i] + 5, indexes[i] + 9, random);
+      if (newIndex >= displayElements.length)
+        displayElements.add(new DisplayElement(getPrimaryColor(rulesToAdd[i]),
+            rulesToAdd[i].typeAsString, rulesToAdd[i].endContent));
+      else
+        displayElements.insert(
+            newIndex,
+            new DisplayElement(getPrimaryColor(rulesToAdd[i]),
+                rulesToAdd[i].typeAsString, rulesToAdd[i].endContent));
+    }
+    print(displayElements);
+    return displayElements;
   }
 
   List<Player> getRandomPlayers(int nb) {

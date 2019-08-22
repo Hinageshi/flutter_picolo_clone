@@ -13,4 +13,9 @@ class DisplayElement {
   MaterialColor get backgroundColor => _backgroundColor;
   String get title => _title;
   String get content => _content;
+
+  @override
+  String toString() {
+    return "DisplayElement $title\n\t$content\n";
+  }
 }

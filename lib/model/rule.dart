@@ -2,8 +2,8 @@ enum Type { RULE, BUG, VIRUS, GAME, SHOT }
 
 class Rule {
   final int _id;
-  final String _content;
-  final String _endContent;
+  String _content;
+  String _endContent;
   final int _nbPlayers;
   final Type _type;
 
@@ -37,4 +37,7 @@ class Rule {
   int get nbPlayers => _nbPlayers;
   Type get type => _type;
   String get typeAsString => _type.toString().split(".")[1];
+
+  set content(String newContent) => _content = newContent;
+  set endContent(String newEndContent) => _endContent = newEndContent;
 }
