@@ -72,74 +72,6 @@ class _HomePageState extends State<HomePage> {
       child: Stack(
         children: <Widget>[
           Align(
-            alignment: Alignment.topRight,
-            child: Padding(
-              padding: EdgeInsets.all(16.0),
-              child: Icon(
-                Icons.settings,
-                size: 35.0,
-                color: Colors.white,
-              ),
-            ),
-          ),
-          Padding(
-            padding: EdgeInsets.only(top: 150.0),
-            child: Column(
-              children: <Widget>[
-                Padding(
-                  padding: EdgeInsets.only(bottom: 30.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Text(
-                        "BIB'INSA",
-                        style: TextStyle(
-                            fontFamily: 'Comix-Loud',
-                            color: Colors.white,
-                            fontSize: 35.0),
-                        textAlign: TextAlign.center,
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: EdgeInsets.only(left: 50.0, right: 50.0),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      ConstrainedBox(
-                        constraints: BoxConstraints(),
-                        child: Text(quote.content,
-                            style: TextStyle(
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold),
-                            textAlign: TextAlign.center),
-                      ),
-                      Padding(
-                        padding: EdgeInsets.only(top: 15.0),
-                        child: Row(
-                          children: <Widget>[
-                            Expanded(child: Container()),
-                            ConstrainedBox(
-                              constraints: BoxConstraints(
-                                  maxWidth: MediaQuery.of(context).size.width -
-                                      100.0),
-                              child: Text("- ${quote.author}",
-                                  style: TextStyle(
-                                      color: Colors.white,
-                                      fontStyle: FontStyle.italic),
-                                  textAlign: TextAlign.right),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                )
-              ],
-            ),
-          ),
-          Align(
               alignment: Alignment.bottomCenter,
               child: Column(
                 mainAxisSize: MainAxisSize.min,
@@ -207,7 +139,75 @@ class _HomePageState extends State<HomePage> {
                     ),
                   ),
                 ],
-              ))
+              )),
+          Align(
+            alignment: Alignment.topRight,
+            child: Padding(
+              padding: EdgeInsets.all(16.0),
+              child: Icon(
+                Icons.settings,
+                size: 35.0,
+                color: Colors.white,
+              ),
+            ),
+          ),
+          Padding(
+            padding: EdgeInsets.only(top: 150.0),
+            child: Column(
+              children: <Widget>[
+                Padding(
+                  padding: EdgeInsets.only(bottom: 30.0),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Text(
+                        "AFTER CLASS",
+                        style: TextStyle(
+                            fontFamily: 'Comix-Loud',
+                            color: Colors.white,
+                            fontSize: 30.0),
+                        textAlign: TextAlign.center,
+                      ),
+                    ],
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.only(left: 50.0, right: 50.0),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    children: <Widget>[
+                      ConstrainedBox(
+                        constraints: BoxConstraints(),
+                        child: Text(quote.content,
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.bold),
+                            textAlign: TextAlign.center),
+                      ),
+                      Padding(
+                        padding: EdgeInsets.only(top: 15.0),
+                        child: Row(
+                          children: <Widget>[
+                            Expanded(child: Container()),
+                            ConstrainedBox(
+                              constraints: BoxConstraints(
+                                  maxWidth: MediaQuery.of(context).size.width -
+                                      100.0),
+                              child: Text("- ${quote.author}",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontStyle: FontStyle.italic),
+                                  textAlign: TextAlign.right),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                )
+              ],
+            ),
+          ),
         ],
       ),
     );

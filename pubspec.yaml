@@ -54,6 +54,8 @@ flutter:
     - assets/images/pint.png # icon made by Smashicons from flaticon.com
     - assets/images/beer-bottle.png # icon made by Freepik from flaticon.com
     - assets/images/race.png # icons made by Freepik from flaticon.com
+    - assets/images/mouth.png # icon made by Pixel perfect from flaticon.com
+    - assets/images/paint.png # icon made by Freepik from flaticon.com
     - assets/data/quotes.json
     - assets/data/names.json
     - assets/data/rules.json

@@ -4,6 +4,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:flutter_picolo_clone/model/quote.dart';
 import 'package:flutter_picolo_clone/model/rule.dart';
+import 'package:flutter_picolo_clone/view/mode_selection.dart';
 import 'package:provider/provider.dart';
 
 class JsonHandlerService {
@@ -80,7 +81,9 @@ class JsonHandlerService {
     }
   }
 
-  Future<List<Rule>> getRulesList(BuildContext context, int nb) async {
+//TODO : add modes
+  Future<List<Rule>> getRulesList(
+      BuildContext context, Mode mode, int nb) async {
     List<Rule> rules = [];
     if (nb > 0 && _rulesJsonData["number_of_rules"] >= nb) {
       List<int> ids = [];

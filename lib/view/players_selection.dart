@@ -3,9 +3,10 @@ import 'package:flutter/services.dart';
 import 'package:flutter_picolo_clone/model/player.dart';
 import 'package:flutter_picolo_clone/model/rule.dart';
 import 'package:flutter_picolo_clone/services/json_handler_service.dart';
-import 'package:flutter_picolo_clone/view/game_page.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:provider/provider.dart';
+
+import 'mode_selection.dart';
 
 class PlayersSelectionPage extends StatefulWidget {
   PlayersSelectionPage({Key key}) : super(key: key);
@@ -53,7 +54,6 @@ class _PlayersSelectionPageState extends State<PlayersSelectionPage> {
           body: Stack(
             children: <Widget>[
               ListView(
-                //physics: const NeverScrollableScrollPhysics(),
                 children: <Widget>[
                   SizedBox(height: 30.0),
                   Text(
@@ -138,7 +138,7 @@ class _PlayersSelectionPageState extends State<PlayersSelectionPage> {
                       child: Padding(
                         padding: EdgeInsets.fromLTRB(5.0, 30.0, 5.0, 20.0),
                         child: Text(
-                          "ENVOIE LA SAUCE",
+                          "MODE DE JEU",
                           style: TextStyle(
                               fontFamily: 'Comix-Loud',
                               color: Colors.blue[300],
@@ -152,11 +152,8 @@ class _PlayersSelectionPageState extends State<PlayersSelectionPage> {
                           players.add(Player(name));
                         });
                         if (players.length >= 2) {
-                          List<Rule> rules =
-                              await Provider.of<JsonHandlerService>(context)
-                                  .getRulesList(context, 10);
                           Navigator.of(context).push(MaterialPageRoute(
-                              builder: (_) => GamePage(players, rules)));
+                              builder: (_) => ModeSelectionPage(players)));
                         } else {
                           print("There is not enough players.");
                         }
