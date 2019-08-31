@@ -215,7 +215,7 @@ class _ModeSelectionPageState extends State<ModeSelectionPage> {
 
   void onModeSelected(Mode mode) async {
     List<Rule> rules = await Provider.of<JsonHandlerService>(context)
-        .getRulesList(context, mode, 10);
+        .getRulesList(context, mode, 50);
     Navigator.of(context).push(
         MaterialPageRoute(builder: (_) => GamePage(widget.players, rules)));
   }
