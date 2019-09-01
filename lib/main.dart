@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
-        title: 'Flutter Picolo Clone',
+        title: 'After Class',
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
