@@ -1,5 +1,5 @@
 {
-    "number_of_rules": 76,
+    "number_of_rules": 83,
     "rules": [
         {
             "id": 0,
@@ -469,6 +469,50 @@
             "id": 75,
             "rule": "Distribue autant de gorgées qu'il y a de E dans ton prénom",
             "type": "rule",
+            "number_of_players": 0
+        },
+        {
+            "id": 76,
+            "rule": "{{0}}, bois 3 gorgées sans les mains ou fini ton verre",
+            "type": "rule",
+            "number_of_players": 1
+        },
+        {
+            "id": 77,
+            "rule": "{{0}} est le roi des pouces, dès qu'il met son pouce sur son front, tous le monde doit l'imiter. Le dernier bois 4 gorgées",
+            "end_rule": "{{0}} n'est plus le roi des pouces",
+            "type": "virus",
+            "number_of_players": 1
+        },
+        {
+            "id": 78,
+            "rule": "{{0}}, distribue autant de gorgées que tu pourras citer de pays qu'a visités {{1}}",
+            "type": "rule",
+            "number_of_players": 2
+        },
+        {
+            "id": 79,
+            "rule": "Bois autant de gorgées que tu as de lettre dans ton nom de famille",
+            "type": "rule",
+            "number_of_players": 0
+        },
+        {
+            "id": 80,
+            "rule": "Bois 5 gorgées si tu es allé aux toilettes depuis le début de la soirée, cumulable si plusieurs fois !",
+            "type": "rule",
+            "number_of_players": 0
+        },
+        {
+            "id": 81,
+            "rule": "Plutôt faire du Prolog sur IntelliJ toute sa vie ou redévelopper IntelliJ en Prolog ? Votez en même temps, les perdants boivent 3 gorgées",
+            "type": "game",
+            "number_of_players": 0
+        },
+        {
+            "id": 82,
+            "rule": "Une paille (en carton) s'est glissée dans votre verre, retirez là à chaque fois que vous buvez sous peine de 3 gorgées.",
+            "end_rule": "Vous pouvez jeter votre paille dans la (bonne) poubelle !",
+            "type": "virus",
             "number_of_players": 0
         }
     ]
