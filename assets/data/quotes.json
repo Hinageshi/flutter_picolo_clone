@@ -1,6 +1,10 @@
 {
-    "number_of_quotes": 40,
+    "number_of_quotes": 41,
     "quotes": [
+        {
+            "quote": "Vaut mieux être bourré que con, ça dure moins longtemps",
+            "author": "Dicton"
+        },
         {
             "quote": "L'alcool est l'aspirine de l'âme.",
             "author": "Louis Gauthier (Anna)"
