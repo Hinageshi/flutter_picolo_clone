@@ -1,5 +1,5 @@
 {
-    "number_of_rules": 83,
+    "number_of_rules": 101,
     "rules": [
         {
             "id": 0,
@@ -492,7 +492,7 @@
         },
         {
             "id": 79,
-            "rule": "Bois autant de gorgées que tu as de lettre dans ton nom de famille",
+            "rule": "Bois autant de gorgées que tu as de lettres dans ton nom de famille",
             "type": "rule",
             "number_of_players": 0
         },
@@ -504,7 +504,7 @@
         },
         {
             "id": 81,
-            "rule": "Plutôt faire du Prolog sur IntelliJ toute sa vie ou redévelopper IntelliJ en Prolog ? Votez en même temps, les perdants boivent 3 gorgées",
+            "rule": "Plutôt faire du Prolog sur Eclipse toute sa vie ou redévelopper Eclipse en Prolog ? Votez en même temps, les perdants boivent 3 gorgées",
             "type": "game",
             "number_of_players": 0
         },
@@ -514,6 +514,116 @@
             "end_rule": "Vous pouvez jeter votre paille dans la (bonne) poubelle !",
             "type": "virus",
             "number_of_players": 0
+        },
+        {
+            "id": 83,
+            "rule": "{{0}} si tu as déjà embrassé une personne dans cette pièce, distribue 4 gorgées !",
+            "type": "rule",
+            "number_of_players": 1
+        },
+        {
+            "id": 84,
+            "rule": "{{0}}, à toi de juger : entre {{1}} et {{2}}, qui fais le plus de fautes d'orthographe ? L'illétré boira 2 gorgées",
+            "type": "game",
+            "number_of_players": 3
+        },
+        {
+            "id": 85,
+            "rule": "Les sports se jouant avec une balle. Le premier qui répète ou ne trouve pas boit 3 gorgées. {{0}} commence",
+            "type": "game",
+            "number_of_players": 1
+        },
+        {
+            "id": 86,
+            "rule": "Si tu as des pièces de monnaie dans les poches bois 2 gorgées",
+            "type": "rule",
+            "number_of_players": 0
+        },
+        {
+            "id": 87,
+            "rule": "Bois 1 gorgée pour chaque heure que tu as seché depuis le début de la semaine",
+            "type": "rule",
+            "number_of_players": 0
+        },
+        {
+            "id": 88,
+            "rule": "{{0}} ferme les yeux. {{1}} doit deviner leur couleur en un essai sous peine de 3 gorgées",
+            "type": "game",
+            "number_of_players": 2
+        },
+        {
+            "id": 89,
+            "rule": "{{0}}, tu peux désormais redistribuer autant de gorgées qu'on t'en donne à boire",
+            "end_rule": "{{0}} ne peut plus redistribuer ses gorgées",
+            "type": "virus",
+            "number_of_players": 1
+        },
+        {
+            "id": 90,
+            "rule": "Les différents types de bières vendu au Foy. Le premier qui répète ou ne trouve pas boit 2 gorgées. {{0}} commence",
+            "type": "game",
+            "number_of_players": 1
+        },
+        {
+            "id": 91,
+            "rule": "Bois 1 gorgée pour chaque vêtement rouge que tu portes et distribue en 2 pour chaque vêtement bleu que tu portes",
+            "type": "rule",
+            "number_of_players": 0
+        },
+        {
+            "id": 92,
+            "rule": "{{0}} imite quelqu'un dans la salle en le mimant. La première personne qui trouve qui tu imites distribue 3 gorgées",
+            "type": "rule",
+            "number_of_players": 1
+        },
+        {
+            "id": 93,
+            "rule": "{{0}} et {{1}} s'affronte au bras de fer chinois. Le perdant bois 2 gorgées",
+            "type": "rule",
+            "number_of_players": 2
+        },
+        {
+            "id": 94,
+            "rule": "{{0}} fait 40 squats ou fini ton verre !",
+            "type": "shot",
+            "number_of_players": 1
+        },
+        {
+            "id": 95,
+            "rule": "Enlevez la dernière lettre du prénom de {{0}}. Tous le monde doit l'appeler ainsi jusqu'a nouvel ordre. 2 gorgées à chaque erreur",
+            "end_rule": "{{0}} à récupérer sa dernière lettre",
+            "type": "virus",
+            "number_of_players": 1
+        },
+        {
+            "id": 96,
+            "rule": "{{0}} donne 5 design pattern. Tu bois 2 gorgées à la première erreur",
+            "type": "rule",
+            "number_of_players": 1
+        },
+        {
+            "id": 97,
+            "rule": "Faîtes une partie de Squeeze Bang Touch ! La personne qui perd bois 4 gorgées. {{0}} tu commences",
+            "type": "game",
+            "number_of_players": 1
+        },
+        {
+            "id": 98,
+            "rule": "Votez tous ensemble pour la personne la plus alcoolique de cette pièce. Le soiffard boit 3 gorgées",
+            "type": "game",
+            "number_of_players": 0
+        },
+        {
+            "id": 99,
+            "rule": "Toutes les personnes qui ont déjà rencontré les parents de {{0}} distribue 2 gorgées",
+            "type": "rule",
+            "number_of_players": 1
+        },
+        {
+            "id": 100,
+            "rule": "{{0}} et {{1}} doivent jouez au Caps. le gagnant distribue 5 gorgées",
+            "type": "game",
+            "number_of_players": 2
         }
     ]
 }
